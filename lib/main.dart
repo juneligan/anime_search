@@ -44,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Anime> searchResults = [];
   TextEditingController customController = TextEditingController();
   Widget searchResultWidget = Text('Result');
+  int narutoAnimationIndex = 0;
+  int narutoIndex = 1;
+  String narutoAnimation = '';
 
   void _incrementCounter(BuildContext context) {
     searchResultWidget = Container(
@@ -101,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         'assets/naruto_smirking.flr',
                         alignment: Alignment.center,
                         fit: BoxFit.fitWidth,
-                        animation: '1+',
+                        animation: narutoAnimation,
                       ),
                     )
                   ),
@@ -131,10 +134,30 @@ class _MyHomePageState extends State<MyHomePage> {
                             autocorrect: false,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Enter a search term'
+//                                hintText: 'Enter a search term'
                             ),
                             textCapitalization: TextCapitalization.sentences,
-                            controller: customController
+                            controller: customController,
+                            onChanged: (text) {
+                              print(text);
+                              setState(() {
+
+                                if (text.length == 0 && narutoIndex == 1) {
+                                  narutoIndex = narutoIndex + 1;
+                                  narutoAnimation = '1+';
+                                } else if (text.length == 8  && narutoIndex == 2) {
+                                  narutoIndex = narutoIndex + 1;
+                                  narutoAnimation = '2+';
+                                } else if (text.length == 8 && narutoIndex == 3) {
+                                  narutoAnimation = '2-';
+                                  narutoIndex = narutoIndex - 1;
+                                } else if (text.length == 0 && narutoIndex == 2) {
+                                  narutoAnimation = '1-';
+                                  narutoIndex = narutoIndex - 1;
+                                }
+                              });
+
+                            },
                         ),)
                       ],
                     ),
@@ -142,6 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(),
                 ],
               ),
+//              Flexible(child: )
               ListViewService.getMatchedItemsListView(searchResults, widget.httpClient),
 //              searchResultWidget
               ],
