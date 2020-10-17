@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:anime_search/list_view_service.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -40,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   List<Anime> searchResults = [];
   TextEditingController customController = TextEditingController();
   Widget searchResultWidget = Text('');
@@ -75,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
           .map((dynamic item) => Anime.fromJson(item as Map<String, dynamic>))
           .toList();
       setState(() {
-        _counter++;
         searchResults.clear();
         searchResults.addAll(results);
 

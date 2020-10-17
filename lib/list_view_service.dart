@@ -48,7 +48,7 @@ class ListViewService {
   }
 
   static _navigateToAnimeDetails(Anime animeDetails, BuildContext context, http.Client httpClient) {
-    debugPrint('YOUR CART ${animeDetails}');
+    debugPrint('YOUR CART $animeDetails');
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (ctx) => AnimeDetailsScreen(animeDetails: animeDetails, httpClient: httpClient,)));
   }

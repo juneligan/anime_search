@@ -1,5 +1,5 @@
-import 'dart:async';
 import 'dart:convert';
+
 import 'package:anime_search/list_view_service.dart';
 import 'package:anime_search/main.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -18,8 +18,6 @@ class AnimeDetailsScreen extends StatefulWidget {
   _AnimeDetailsScreenState createState() => _AnimeDetailsScreenState();
 }
 
-class AnimeDetails {
-}
 
 class _AnimeDetailsScreenState extends State<AnimeDetailsScreen> {
   List<Episode> episodes = [];

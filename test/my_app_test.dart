@@ -14,12 +14,12 @@ void main() {
   final httpClient = MockHttpClient();
 
   testWidgets('MyApp should input a text to the search input text field', (WidgetTester tester) async {
-    given:
+    // given:
     String searchString = "Fate/Zero";
     String getQueryString = 'https://private-anon-f55a253521-jikan.apiary-proxy.com/v3/search/anime?q=$searchString&page=1&limit=15';
     await tester.pumpWidget(MyApp(httpClient));
 
-    before:
+    // before:
     expect(find.text('Fate/Zero 2nd Season'), findsNothing);
 
     expect(find.byType(TextField), findsOneWidget);
@@ -39,7 +39,7 @@ void main() {
 
     when(httpClient.get(getQueryString)).thenAnswer((_) async => http.Response(jsonEncode(response), 200));
 
-    when:
+    // when:
     await tester.tap(find.byType(RaisedButton));
     await tester.pump();
 
@@ -47,14 +47,14 @@ void main() {
   });
 
   testWidgets('MyApp should navigate to the anime\'s episode page when tapping one of the search results', (WidgetTester tester) async {
-    given:
+    // given:
     int animeId = 11741;
     String getEpisodeQueryString = 'https://api.jikan.moe/v3/anime/$animeId/episodes';
     String searchString = "Fate/Zero";
     String getQueryString = 'https://private-anon-f55a253521-jikan.apiary-proxy.com/v3/search/anime?q=$searchString&page=1&limit=15';
     await tester.pumpWidget(MyApp(httpClient));
 
-    before:
+    // before:
     expect(find.text('Fate/Zero 2nd Season'), findsNothing);
 
     expect(find.byType(TextField), findsOneWidget);
@@ -98,27 +98,27 @@ void main() {
     when(httpClient.get(getQueryString)).thenAnswer((_) async => http.Response(jsonEncode(animeSearchResponse), 200));
     when(httpClient.get(getEpisodeQueryString)).thenAnswer((_) async => http.Response(jsonEncode(episodesSearchResponse), 200));
 
-    when:
+    // when:
     await tester.tap(find.byType(RaisedButton));
     await tester.pump(Duration(milliseconds:400));
 
     await tester.tap(find.text('Fate/Zero 2nd Season'));
     await tester.pumpAndSettle(Duration(milliseconds:400));
 
-    then:
+    // then:
     expect(find.text(listTitle1), findsOneWidget);
     expect(find.text(listTitle2), findsOneWidget);
   });
 
   testWidgets('MyApp should navigate to the anime\'s episode page when tapping one of the search results', (WidgetTester tester) async {
-    given:
+    // given:
     int animeId = 11741;
     String getEpisodeQueryString = 'https://api.jikan.moe/v3/anime/$animeId/episodes';
     String searchString = "Fate/Zero";
     String getQueryString = 'https://private-anon-f55a253521-jikan.apiary-proxy.com/v3/search/anime?q=$searchString&page=1&limit=15';
     await tester.pumpWidget(MyApp(httpClient));
 
-    before:
+    // before:
     expect(find.text('Fate/Zero 2nd Season'), findsNothing);
 
     expect(find.byType(TextField), findsOneWidget);
@@ -142,7 +142,6 @@ void main() {
 
     final enTitle2 = "Expression of Hatred";
     final jpTitle2 = "Test 2";
-    final listTitle2 = 'Ep 2 - $jpTitle2 ($enTitle2)';
     final episodesSearchResponse = {
       "episodes": [ {
         "episode_id": 1,
@@ -160,13 +159,12 @@ void main() {
     };
     String episodeNumber = "Episode Number : 1";
     String titleDetail = "Title : $jpTitle1 ($enTitle1)";
-    String airedDetail = "Date Aired : Jun 06 2008";
     String fillerDetail = "Filler : No";
 
     when(httpClient.get(getQueryString)).thenAnswer((_) async => http.Response(jsonEncode(animeSearchResponse), 200));
     when(httpClient.get(getEpisodeQueryString)).thenAnswer((_) async => http.Response(jsonEncode(episodesSearchResponse), 200));
 
-    when:
+    // when:
     await tester.tap(find.byType(RaisedButton));
     await tester.pump(Duration(milliseconds:400));
 
@@ -177,7 +175,7 @@ void main() {
     await tester.tap(find.text(listTitle1));
     await tester.pumpAndSettle(Duration(milliseconds:400));
 
-    then:
+    // then:
     expect(find.text(episodeNumber), findsOneWidget);
     expect(find.text(titleDetail), findsOneWidget);
     expect(find.text(fillerDetail), findsOneWidget);
