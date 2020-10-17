@@ -43,17 +43,18 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<Anime> searchResults = [];
   TextEditingController customController = TextEditingController();
-  Widget searchResultWidget = Text('Result');
+  Widget searchResultWidget = Text('');
   int narutoAnimationIndex = 0;
   int narutoIndex = 1;
   String narutoAnimation = '';
 
   void _incrementCounter(BuildContext context) {
     searchResultWidget = Container(
+      height: 300,
       child: FlareActor(
         'assets/searching.flr',
         alignment: Alignment.center,
-        fit: BoxFit.none,
+        fit: BoxFit.fitWidth,
         animation: 's2',
       ),
     );
@@ -80,7 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
         searchResultWidget = results.length > 0
             ? ListViewService.getMatchedItemsListView(searchResults, widget.httpClient)
-            : Text('NO SEARCH RESULTS');// Container(child: Image.asset('assets/naruto_cri.gif'));
+            : Container(child: Image.asset('assets/naruto_cri.gif'));
+      });
+    }).catchError((error) {
+      setState(() {
+        searchResultWidget = Text('Unable to search an anime at this moment, please try again tomorrow.');
       });
     });
   }
@@ -166,7 +171,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
 //              Flexible(child: )
-              ListViewService.getMatchedItemsListView(searchResults, widget.httpClient),
+              Column(
+                children: <Widget>[
+                  searchResultWidget,
+//                  ListView(
+//                    child: searchResultWidget,
+//                  )
+                ],
+              ),
+//              ListViewService.getMatchedItemsListView(searchResults, widget.httpClient),
 //              searchResultWidget
               ],
         ),
