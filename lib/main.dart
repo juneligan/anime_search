@@ -141,7 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             textCapitalization: TextCapitalization.sentences,
                             controller: customController,
                             onChanged: (text) {
-                              print(text);
                               setState(() {
 
                                 if (text.length == 0 && narutoIndex == 1) {
