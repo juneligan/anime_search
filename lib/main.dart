@@ -85,29 +85,62 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              TextField(
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Enter a search term'
+              Stack(
+                children: <Widget>[
+                  Positioned(
+                    child: Container(
+                      height: 270,
+                      child: FlareActor(
+                        'assets/naruto_smirking.flr',
+                        alignment: Alignment.center,
+                        fit: BoxFit.fitWidth,
+                        animation: '1+',
+                      ),
+                    )
                   ),
-                textCapitalization: TextCapitalization.sentences,
-                controller: customController
-              ),
-
-              const SizedBox(height: 30),
-              RaisedButton(
-                onPressed: () => _incrementCounter(context),
-                child: const Text(
-                    'Search',
-                    style: TextStyle(fontSize: 20)
-                ),
+                  Positioned(
+                      left: 0,
+                      right: 0,
+                      height: 100,
+                      child: Container(
+                        height: 45,
+                        child: FlareActor(
+                          'assets/anime_search_bar.flr',
+                          alignment: Alignment.center,
+                          fit: BoxFit.fitWidth,
+                          animation: 'right tap',
+                        ),
+                      )
+                  ),
+                  Container(
+                    height: 110,
+                    padding: const EdgeInsets.only(left: 60.0, right: 0.0),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: <Widget>[
+                        FlatButton(onPressed: () => _incrementCounter(context), child: Text("Search")),
+                        Expanded(child:
+                        TextField(
+                            autocorrect: false,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Enter a search term'
+                            ),
+                            textCapitalization: TextCapitalization.sentences,
+                            controller: customController
+                        ),)
+                      ],
+                    ),
+                  ),
+                  Container(),
+                ],
               ),
               ListViewService.getMatchedItemsListView(searchResults, widget.httpClient),
 //              searchResultWidget

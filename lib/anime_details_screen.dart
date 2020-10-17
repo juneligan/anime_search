@@ -59,6 +59,7 @@ class _AnimeDetailsScreenState extends State<AnimeDetailsScreen> {
 
     String title = widget.animeDetails.title;
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
