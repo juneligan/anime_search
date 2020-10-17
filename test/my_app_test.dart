@@ -40,7 +40,7 @@ void main() {
     when(httpClient.get(getQueryString)).thenAnswer((_) async => http.Response(jsonEncode(response), 200));
 
     // when:
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(FlatButton));
     await tester.pump();
 
     expect(find.text('Fate/Zero 2nd Season'), findsOneWidget);
@@ -99,7 +99,7 @@ void main() {
     when(httpClient.get(getEpisodeQueryString)).thenAnswer((_) async => http.Response(jsonEncode(episodesSearchResponse), 200));
 
     // when:
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(FlatButton));
     await tester.pump(Duration(milliseconds:400));
 
     await tester.tap(find.text('Fate/Zero 2nd Season'));
@@ -165,7 +165,7 @@ void main() {
     when(httpClient.get(getEpisodeQueryString)).thenAnswer((_) async => http.Response(jsonEncode(episodesSearchResponse), 200));
 
     // when:
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(FlatButton));
     await tester.pump(Duration(milliseconds:400));
 
     await tester.tap(find.text('Fate/Zero 2nd Season'));
