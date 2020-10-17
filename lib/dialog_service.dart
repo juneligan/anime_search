@@ -43,7 +43,7 @@ class DialogService {
 
   static String getMonth(int monthIndex) {
     var  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return months[monthIndex-0];
+    return months[monthIndex-1];
   }
 }
 

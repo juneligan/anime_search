@@ -39,9 +39,9 @@ class _AnimeDetailsScreenState extends State<AnimeDetailsScreen> {
 
     widget.httpClient.get('https://api.jikan.moe/v3/anime/${widget.animeDetails.id}/episodes')
         .then((response) {
-      print('---------->>>1');
-      print(jsonEncode(jsonDecode(response.body)));
-      print('---------->>>2');
+//      print('---------->>>1');
+//      print(jsonEncode(jsonDecode(response.body)));
+//      print('---------->>>2');
       Map<String, dynamic> json = jsonDecode(response.body) as Map<String, dynamic>;
       final List<Episode> results = (json['episodes'] as List<dynamic>)
           .map((dynamic item) => Episode.fromJson(item as Map<String, dynamic>))
